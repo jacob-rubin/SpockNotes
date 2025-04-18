@@ -1,14 +1,15 @@
 import { v4 as uuidv4 } from 'uuid';
+import type { DbNote } from '../utils/types';
 
 export class Note {
 	#id: string;
 	#title: string = $state('');
 	#content: string = $state('');
 
-	constructor() {
+	constructor(title?: string, content?: string) {
 		this.#id = uuidv4();
-		this.#title = 'Untitled Note';
-		this.#content = '';
+		this.#title = title ?? 'Untitled Note';
+		this.#content = content ?? '';
 	}
 
 	get id() {
@@ -34,6 +35,12 @@ export class Note {
 
 class NoteManager {
 	#notes: Note[] = $state([]);
+
+	loadFromDB(notes: DbNote[]): void {
+		this.#notes = notes.map((note: DbNote) => {
+			return new Note(note.title, note.content);
+		});
+	}
 
 	getNoteById(id: string): Note {
 		const note: Note | undefined = this.#notes.find((note) => note.id === id);
