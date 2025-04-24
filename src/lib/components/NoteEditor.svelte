@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { type Note } from '../../store/noteState.svelte';
+	import type { Note } from '../../store/noteState.svelte';
 
 	interface Props {
 		note: Note;
 	}
 
-	let { note }: Props = $props();
+	let { note = $bindable() }: Props = $props();
 </script>
 
-<div class={`card card-sm card-border w-full shadow-xs`}>
+<div class="card card-sm card-border w-96 shadow-md">
 	<div class="card-body">
 		<input
 			type="text"

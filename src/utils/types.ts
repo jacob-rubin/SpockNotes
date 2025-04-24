@@ -1,9 +1,9 @@
-type Note = {
+export type Note = {
 	content: string;
 	title: string;
 };
 
-export type DbNote = Note & {
+type NoteCollection = {
 	collectionId: string;
 	collectionName: 'notes';
 	created: Date;
@@ -11,3 +11,5 @@ export type DbNote = Note & {
 	updated: Date;
 	user: string;
 };
+
+export type DbNote = Note & NoteCollection;
