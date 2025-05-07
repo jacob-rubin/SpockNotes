@@ -1,13 +1,9 @@
-<script>
+<script lang="ts">
 	import InputValidator from '$lib/components/InputValidator.svelte';
 </script>
 
 <div class="flex h-screen w-screen flex-col items-center justify-center gap-2">
-	<form
-		class="flex w-full flex-col items-center justify-center gap-2"
-		method="POST"
-		action="?/login"
-	>
+	<form class="flex w-full flex-col items-center" method="POST" action="?/signup">
 		<InputValidator
 			name="email"
 			type="email"
@@ -20,8 +16,14 @@
 			placeholder="Password"
 			hint="Must be valid email"
 		/>
-		<button class="btn btn-wide btn-lg" type="submit">Login</button>
+		<InputValidator
+			name="passwordConfirm"
+			type="password"
+			placeholder="Confirm Password"
+			hint="Must be valid email"
+		/>
+		<button type="submit" class="btn btn-wide btn-lg">Sign Up</button>
 	</form>
 	<div class="divider">OR</div>
-	<a role="button" class="btn btn-wide btn-lg" href="/signup">Sign Up</a>
+	<a role="button" class="btn btn-wide btn-lg" href="/login">Back to Login</a>
 </div>

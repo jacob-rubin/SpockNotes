@@ -1,21 +1,20 @@
 <script lang="ts">
-	import { type Note } from '../../store/noteState.svelte';
-
 	interface Props {
-		note: Note;
+		title: string;
+		content: string;
 	}
 
-	let { note }: Props = $props();
+	let { title, content }: Props = $props();
 </script>
 
-<div class={`card card-sm card-border w-full shadow-xs`}>
+<div class="card card-sm card-border w-96 shadow-md">
 	<div class="card-body">
 		<input
 			type="text"
 			class="input input-bordered card-title w-full"
-			bind:value={note.title}
+			bind:value={title}
 			placeholder="Title"
 		/>
-		<textarea class="textarea w-full" placeholder="Note" bind:value={note.content}></textarea>
+		<textarea class="textarea w-full" placeholder="Note" bind:value={content}></textarea>
 	</div>
 </div>
