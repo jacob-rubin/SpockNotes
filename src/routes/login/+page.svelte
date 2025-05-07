@@ -1,32 +1,25 @@
-<script lang="ts">
-	import { pbState } from '../../store/pbState.svelte';
-	import { goto } from '$app/navigation';
-
-	let email: string;
-	let password: string;
-
-	const login = async () => {
-		try {
-			await pbState.login(email, password);
-		} catch (error) {
-			console.error('Login error:', error);
-			alert('Login failed. Please check your credentials.');
-			return;
-		}
-
-		console.log(pbState.currentUser);
-		if (pbState.currentUser) {
-			await goto('/notes');
-		} else {
-			alert('Login failed. Please check your credentials.');
-		}
-	};
+<script>
+	import InputValidator from '$lib/components/InputValidator.svelte';
 </script>
 
 <div class="flex h-screen w-screen flex-col items-center justify-center gap-2">
-	<form class="flex w-full flex-col items-center justify-center gap-2" onsubmit={login}>
-		<input bind:value={email} type="text" placeholder="Email" class="input" />
-		<input bind:value={password} type="text" placeholder="Password" class="input" />
+	<form
+		class="flex w-full flex-col items-center justify-center gap-2"
+		method="POST"
+		action="?/login"
+	>
+		<InputValidator
+			name="email"
+			type="email"
+			placeholder="mailto@email.com"
+			hint="Must be valid email"
+		/>
+		<InputValidator
+			name="password"
+			type="password"
+			placeholder="Password"
+			hint="Must be valid email"
+		/>
 		<button class="btn btn-wide btn-lg" type="submit">Login</button>
 	</form>
 	<div class="divider">OR</div>
